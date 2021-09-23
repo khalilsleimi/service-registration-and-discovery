@@ -22,8 +22,11 @@ public class ServiceRegistrationAndDiscoveryClientApplication {
 @RestController
 class ServiceInstanceRestController {
 
-    @Autowired
-    private DiscoveryClient discoveryClient;
+    private final DiscoveryClient discoveryClient;
+
+    public ServiceInstanceRestController(DiscoveryClient discoveryClient) {
+        this.discoveryClient = discoveryClient;
+    }
 
     @RequestMapping("/service-instances/{applicationName}")
     public List<ServiceInstance> serviceInstancesByApplicationName(
